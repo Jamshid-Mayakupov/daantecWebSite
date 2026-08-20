@@ -96,6 +96,7 @@ export default {
         { to: '/about', label: 'nav.about' },
         { to: '/products', label: 'nav.products' },
         { to: '/partners', label: 'nav.partners' },
+        { to: '/direction', label: 'Направление' },
         { to: '/services', label: 'nav.services' },
         { to: '/blog', label: 'nav.blog' },
         { to: '/contact', label: 'nav.contact' }

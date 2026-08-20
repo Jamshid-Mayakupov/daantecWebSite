@@ -1,37 +1,76 @@
 <template>
-  <div class="pt-20">
+  <div class="pt-20 bg-[#F4F7F9] font-sans selection:bg-theme-blue selection:text-white min-h-screen">
     
-    <!-- Services Grid -->
-    <section class="py-16 bg-white">
-      <div class="container mx-auto px-4">
-        <!-- Breadcrumb -->
-        <div class="mb-12">
-          <span class="text-xs font-semibold text-gray-500 uppercase tracking-widest">{{ $t('services.badge') }}</span>
+    <section class="py-20 relative overflow-hidden">
+      <!-- Premium Background Glow Effects -->
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[1px] bg-gradient-to-r from-transparent via-theme-blue/30 to-transparent"></div>
+      <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-theme-blue/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
+
+      <div class="container mx-auto px-4 max-w-7xl relative z-10">
+        
+        <!-- Premium Badge / Header -->
+        <div class="text-center mb-20" data-aos="fade-down">
+          <div class="inline-flex items-center justify-center gap-4 px-6 py-3 rounded-full bg-white shadow-[0_10px_30px_-15px_rgba(37,99,235,0.2)] border border-blue-50/50 backdrop-blur-sm">
+            <span class="w-2.5 h-2.5 rounded-full bg-theme-blue animate-pulse shadow-[0_0_10px_rgba(37,99,235,0.5)]"></span>
+            <span class="text-sm font-black text-theme-blue uppercase tracking-[0.25em]">{{ $t('services.badge') }}</span>
+            <span class="w-2.5 h-2.5 rounded-full bg-theme-blue animate-pulse shadow-[0_0_10px_rgba(37,99,235,0.5)]"></span>
+          </div>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Services Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10">
           <div 
             v-for="(service, index) in services" 
             :key="index"
-            class="card-hover bg-gradient-to-br from-theme-light to-white p-6 rounded-xl border border-theme-medium"
+            class="group relative bg-white rounded-[2.5rem] p-8 lg:p-10 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_25px_50px_-15px_rgba(37,99,235,0.15)] border border-gray-100 hover:border-theme-blue/30 transition-all duration-500 hover:-translate-y-2 overflow-hidden flex flex-col h-full cursor-default"
+            data-aos="fade-up"
+            :data-aos-delay="index * 100"
           >
-            <div class="w-12 h-12 bg-theme-blue rounded-lg flex items-center justify-center mb-4">
-              <i :class="service.icon" class="text-white text-lg"></i>
+            <!-- Animated Bottom Border -->
+            <div class="absolute bottom-0 left-0 w-full h-1.5 bg-gradient-to-r from-cyan-400 to-theme-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-20"></div>
+
+            <!-- Decorative Glow Blob inside Card -->
+            <div class="absolute -right-12 -top-12 w-48 h-48 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 scale-50 group-hover:scale-100 ease-out z-0 blur-2xl pointer-events-none"></div>
+
+            <div class="relative z-10 flex-1 flex flex-col">
+              <!-- Icon Container -->
+              <div class="w-16 h-16 bg-blue-50 text-theme-blue rounded-2xl flex items-center justify-center mb-8 group-hover:bg-theme-blue group-hover:text-white transition-all duration-500 shadow-inner group-hover:shadow-blue-500/30 group-hover:scale-110 transform origin-left">
+                <i :class="service.icon" class="text-2xl transition-transform duration-500 group-hover:scale-110"></i>
+              </div>
+              
+              <!-- Title & Description -->
+              <h3 class="text-2xl font-black text-gray-900 mb-4 tracking-tight group-hover:text-theme-blue transition-colors duration-300">
+                {{ $t(service.title) }}
+              </h3>
+              <p class="text-sm text-gray-500 mb-8 leading-relaxed font-medium flex-1">
+                {{ $t(service.description) }}
+              </p>
+
+              <!-- Features List -->
+              <div class="pt-6 border-t border-gray-100/80">
+                <ul class="space-y-4">
+                  <li 
+                    v-for="(feature, idx) in service.features" 
+                    :key="idx" 
+                    class="flex items-start group/feature"
+                  >
+                    <!-- Custom Interactive Checkmark -->
+                    <div class="flex-shrink-0 w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center mt-0.5 mr-3 group-hover/feature:bg-theme-blue transition-colors duration-300">
+                      <i class="fas fa-check text-[10px] text-theme-blue group-hover/feature:text-white transition-colors duration-300"></i>
+                    </div>
+                    <span class="text-sm font-semibold text-gray-600 group-hover/feature:text-gray-900 transition-colors duration-300">
+                      {{ $t(feature) }}
+                    </span>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <h3 class="text-base lg:text-lg font-bold text-heading-dark mb-3">{{ $t(service.title) }}</h3>
-            <p class="text-xs lg:text-sm text-gray-600 mb-4 leading-relaxed">{{ $t(service.description) }}</p>
-            <ul class="space-y-2">
-              <li v-for="(feature, idx) in service.features" :key="idx" class="flex items-start">
-                <i class="fas fa-check text-theme-blue mr-2 mt-0.5 text-xs"></i>
-                <span class="text-xs lg:text-sm text-gray-600">{{ $t(feature) }}</span>
-              </li>
-            </ul>
           </div>
         </div>
+
       </div>
     </section>
 
-    
   </div>
 </template>
 
@@ -112,3 +151,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.text-theme-blue {
+  color: #2563EB;
+}
+.bg-theme-blue {
+  background-color: #2563EB;
+}
+</style>

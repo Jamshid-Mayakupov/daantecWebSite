@@ -1,228 +1,319 @@
 <template>
-  <div class="pt-20">
-    <!-- Hero Section -->
-    <section class="gradient-blue text-white py-16 relative overflow-hidden">
-      <div class="absolute inset-0 opacity-10">
-        <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-      </div>
+  <div class="pt-20 bg-[#F4F7F9] font-sans selection:bg-theme-blue selection:text-white min-h-screen">
+    
+    <!-- 1. HERO SECTION -->
+    <section class="relative pt-24 pb-32 bg-slate-950 text-white overflow-hidden z-10">
+      <!-- Premium Glow Effects -->
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/40 via-slate-900 to-slate-950 -z-10"></div>
+      <div class="absolute -top-24 -right-24 w-96 h-96 bg-theme-blue/20 blur-[100px] rounded-full"></div>
+      <div class="absolute bottom-0 left-10 w-72 h-72 bg-cyan-500/10 blur-[80px] rounded-full"></div>
       
-      <div class="container mx-auto px-4 relative z-10">
-        <!-- Breadcrumb -->
-        <div class="mb-8">
-          <span class="text-xs font-semibold text-white opacity-70 uppercase tracking-widest">{{ $t('partners.badge') }}</span>
+      <div class="container mx-auto px-4 max-w-7xl relative z-20">
+        <div class="flex items-center gap-4 mb-8" data-aos="fade-right">
+          <div class="w-12 h-[2px] bg-theme-blue"></div>
+          <span class="text-xs font-black text-theme-blue uppercase tracking-[0.3em]">{{ $t('partners.badge') }}</span>
         </div>
         
-        <div class="max-w-3xl text-left">
-          <h1 class="text-3xl lg:text-5xl font-bold mb-4">{{ $t('partners.heroTitle') }}</h1>
-          <p class="text-base lg:text-lg opacity-90 mb-6">{{ $t('partners.heroSubtitle') }}</p>
+        <div class="max-w-3xl text-left" data-aos="fade-up">
+          <h1 class="text-4xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-[1.1]">
+            {{ $t('partners.heroTitle') }}
+          </h1>
+          <p class="text-lg lg:text-xl text-gray-300 mb-10 leading-relaxed font-medium">
+            {{ $t('partners.heroSubtitle') }}
+          </p>
           <button 
             @click="scrollToForm" 
-            class="bg-white text-theme-blue px-6 py-3 rounded-lg text-sm font-semibold hover:bg-opacity-90 transition"
+            class="group relative inline-flex items-center justify-center gap-3 bg-white text-slate-900 px-8 py-4 rounded-xl font-bold transition-all duration-300 hover:bg-theme-blue hover:text-white shadow-[0_10px_30px_rgba(255,255,255,0.1)] hover:shadow-[0_10px_30px_rgba(37,99,235,0.3)] overflow-hidden"
           >
-            <i class="fas fa-handshake mr-2"></i>{{ $t('partners.heroButton') }}
+            <div class="absolute inset-0 w-0 bg-theme-blue transition-all duration-[250ms] ease-out group-hover:w-full -z-10"></div>
+            <i class="fas fa-handshake text-theme-blue group-hover:text-white transition-colors"></i>
+            <span>{{ $t('partners.heroButton') }}</span>
           </button>
         </div>
       </div>
     </section>
 
-    <!-- Benefits Section -->
-    <section class="py-16 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-          <h2 class="text-2xl lg:text-3xl font-bold text-heading-dark mb-3">{{ $t('partners.benefitsTitle') }}</h2>
-          <p class="text-sm lg:text-base text-gray-600">{{ $t('partners.benefitsSubtitle') }}</p>
+    <!-- 2. BENEFITS SECTION -->
+    <section class="py-24 bg-white relative">
+      <div class="container mx-auto px-4 max-w-7xl">
+        <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+          <h2 class="text-3xl lg:text-5xl font-black text-gray-900 mb-6 tracking-tight">{{ $t('partners.benefitsTitle') }}</h2>
+          <p class="text-lg text-gray-600 font-medium">{{ $t('partners.benefitsSubtitle') }}</p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div 
             v-for="(benefit, index) in benefits" 
             :key="index" 
-            class="card-hover bg-gradient-to-br from-theme-light to-white p-6 rounded-xl border border-theme-medium"
+            class="group bg-white p-8 rounded-[2rem] border border-gray-100 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-15px_rgba(37,99,235,0.15)] hover:border-theme-blue/30 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden"
+            data-aos="fade-up" :data-aos-delay="index * 100"
           >
-            <div class="w-12 h-12 bg-theme-blue rounded-lg flex items-center justify-center mb-4">
-              <i :class="benefit.icon" class="text-white text-lg"></i>
-            </div>
-            <h3 class="text-base lg:text-lg font-bold text-heading-dark mb-2">{{ $t(benefit.title) }}</h3>
-            <p class="text-xs lg:text-sm text-gray-600 leading-relaxed">{{ $t(benefit.description) }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Steps Section -->
-    <section class="py-16 gradient-bg">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-          <h2 class="text-2xl lg:text-3xl font-bold text-heading-dark mb-3">{{ $t('partners.stepsTitle') }}</h2>
-          <p class="text-sm lg:text-base text-gray-600">{{ $t('partners.stepsSubtitle') }}</p>
-        </div>
-
-        <div class="max-w-3xl mx-auto">
-          <div 
-            v-for="(step, index) in steps" 
-            :key="index" 
-            class="flex items-start mb-8 last:mb-0"
-          >
-            <div class="flex-shrink-0 w-12 h-12 bg-theme-blue rounded-full flex items-center justify-center text-white text-lg font-bold mr-4">
-              {{ index + 1 }}
-            </div>
-            <div class="flex-grow">
-              <h3 class="text-base lg:text-lg font-bold text-heading-dark mb-1">{{ $t(step.title) }}</h3>
-              <p class="text-xs lg:text-sm text-gray-600 leading-relaxed">{{ $t(step.description) }}</p>
+            <!-- Background Decoration -->
+            <div class="absolute -right-8 -top-8 w-32 h-32 bg-blue-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-50 group-hover:scale-100 ease-out z-0"></div>
+            
+            <div class="relative z-10">
+              <div class="w-16 h-16 bg-blue-50 text-theme-blue rounded-2xl flex items-center justify-center mb-6 group-hover:bg-theme-blue group-hover:text-white transition-colors duration-500 shadow-inner">
+                <i :class="benefit.icon" class="text-2xl"></i>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-theme-blue transition-colors">{{ $t(benefit.title) }}</h3>
+              <p class="text-sm text-gray-500 leading-relaxed font-medium">{{ $t(benefit.description) }}</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Success Stories -->
-    <section class="py-16 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-          <h2 class="text-2xl lg:text-3xl font-bold text-heading-dark mb-3">{{ $t('partners.storiesTitle') }}</h2>
-          <p class="text-sm lg:text-base text-gray-600">{{ $t('partners.storiesSubtitle') }}</p>
+    <!-- 3. STEPS SECTION (Timeline Design) -->
+    <section class="py-24 bg-[#F4F7F9]">
+      <div class="container mx-auto px-4 max-w-7xl">
+        <div class="text-center max-w-3xl mx-auto mb-20" data-aos="fade-up">
+          <h2 class="text-3xl lg:text-5xl font-black text-gray-900 mb-6 tracking-tight">{{ $t('partners.stepsTitle') }}</h2>
+          <p class="text-lg text-gray-600 font-medium">{{ $t('partners.stepsSubtitle') }}</p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-6">
+        <div class="max-w-4xl mx-auto relative">
+          <!-- Vertical Line -->
+          <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-theme-blue via-blue-300 to-transparent -translate-x-1/2 opacity-20"></div>
+          
+          <div class="space-y-12">
+            <div 
+              v-for="(step, index) in steps" 
+              :key="index" 
+              class="relative flex flex-col md:flex-row items-center gap-8 group"
+              data-aos="fade-up"
+            >
+              <!-- Timeline Node -->
+              <div class="md:absolute md:left-1/2 md:-translate-x-1/2 w-16 h-16 bg-white border-4 border-theme-blue rounded-full flex items-center justify-center text-theme-blue font-black text-2xl shadow-lg z-10 group-hover:scale-110 group-hover:bg-theme-blue group-hover:text-white transition-all duration-300">
+                {{ index + 1 }}
+              </div>
+              
+              <!-- Content Card -->
+              <div class="w-full md:w-1/2 flex" :class="index % 2 === 0 ? 'md:justify-end md:pr-16' : 'md:justify-start md:pl-16 md:ml-auto'">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 group-hover:shadow-xl group-hover:border-theme-blue/30 transition-all duration-300 w-full text-center md:text-left relative">
+                  <h3 class="text-xl font-bold text-gray-900 mb-3">{{ $t(step.title) }}</h3>
+                  <p class="text-sm text-gray-600 leading-relaxed font-medium">{{ $t(step.description) }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SUCCESS STORIES -->
+    <section class="py-24 bg-white relative overflow-hidden">
+      <!-- Decor -->
+      <div class="absolute right-0 top-0 w-1/3 h-full bg-blue-50/50 -skew-x-12 translate-x-20 z-0 pointer-events-none"></div>
+
+      <div class="container mx-auto px-4 max-w-7xl relative z-10">
+        <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+          <h2 class="text-3xl lg:text-5xl font-black text-gray-900 mb-6 tracking-tight">{{ $t('partners.storiesTitle') }}</h2>
+          <p class="text-lg text-gray-600 font-medium">{{ $t('partners.storiesSubtitle') }}</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
           <div 
             v-for="(story, index) in successStories" 
             :key="index" 
-            class="card-hover bg-gradient-to-br from-theme-light to-white p-6 rounded-xl border border-theme-medium"
+            class="bg-white p-8 rounded-[2rem] border border-gray-100 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.05)] relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300"
           >
-            <div class="flex items-center mb-4">
-              <img :src="story.logo" alt="Logo" class="w-12 h-12 rounded-full mr-3">
-              <div>
-                <h4 class="text-sm lg:text-base font-bold text-heading-dark">{{ $t(story.company) }}</h4>
-                <p class="text-gray-600 text-xs">{{ $t(story.city) }}</p>
+            <i class="fas fa-quote-right absolute -bottom-4 -right-4 text-9xl text-gray-50 opacity-50 group-hover:text-blue-50 transition-colors z-0 pointer-events-none"></i>
+            
+            <div class="relative z-10">
+              <div class="flex items-center mb-6 gap-4">
+                <div class="relative">
+                  <div class="absolute inset-0 border-2 border-theme-blue rounded-full scale-110 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300"></div>
+                  <img :src="story.logo" alt="Logo" class="w-14 h-14 rounded-full shadow-sm">
+                </div>
+                <div>
+                  <h4 class="text-lg font-bold text-gray-900">{{ $t(story.company) }}</h4>
+                  <p class="text-theme-blue text-xs font-bold uppercase tracking-wider">{{ $t(story.city) }}</p>
+                </div>
               </div>
-            </div>
-            <p class="text-xs lg:text-sm text-gray-600 mb-3 leading-relaxed">"{{ $t(story.review) }}"</p>
-            <div class="flex text-yellow-400 text-xs">
-              <i v-for="n in 5" :key="n" class="fas fa-star"></i>
+              <p class="text-gray-600 text-sm leading-relaxed mb-6 font-medium italic">"{{ $t(story.review) }}"</p>
+              <div class="flex text-yellow-400 gap-1 text-sm">
+                <i v-for="n in 5" :key="n" class="fas fa-star"></i>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Partnership Form -->
-    <section id="partner-form" class="py-16 gradient-bg">
-      <div class="container mx-auto px-4">
-        <div class="max-w-2xl mx-auto">
-          <div class="bg-white p-6 md:p-8 rounded-2xl shadow-2xl">
-            <h2 class="text-2xl lg:text-3xl font-bold text-heading-dark mb-3 text-center">{{ $t('partners.formTitle') }}</h2>
-            <p class="text-xs lg:text-sm text-gray-600 text-center mb-6">{{ $t('partners.formSubtitle') }}</p>
+    <!-- 5. PARTNERSHIP FORM (Premium Design) -->
+    <section id="partner-form" class="py-24 bg-slate-950 relative overflow-hidden">
+      <!-- Dark Premium Glows -->
+      <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5 pointer-events-none"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-theme-blue/20 blur-[120px] rounded-full pointer-events-none"></div>
+
+      <div class="container mx-auto px-4 max-w-7xl relative z-10">
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl relative">
+            <div class="text-center mb-10">
+              <h2 class="text-3xl lg:text-4xl font-black text-gray-900 mb-4 tracking-tight">{{ $t('partners.formTitle') }}</h2>
+              <p class="text-gray-500 font-medium">{{ $t('partners.formSubtitle') }}</p>
+            </div>
             
-            <form @submit.prevent="submitForm" class="space-y-4">
-              <div class="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-gray-700 text-xs lg:text-sm font-semibold mb-1">{{ $t('partners.formCompany') }} *</label>
-                  <input 
-                    type="text" 
-                    required 
-                    v-model="form.companyName"
-                    class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 focus:border-theme-blue outline-none"
-                  >
+            <form @submit.prevent="submitForm" class="space-y-6">
+              
+              <div class="grid md:grid-cols-2 gap-6">
+                <!-- Company Name -->
+                <div class="form-group">
+                  <label class="block text-gray-700 text-xs font-bold uppercase tracking-wider mb-2">{{ $t('partners.formCompany') }} *</label>
+                  <div class="relative group/input">
+                    <i class="fas fa-building absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within/input:text-theme-blue transition-colors"></i>
+                    <input 
+                      type="text" 
+                      required 
+                      v-model="form.companyName"
+                      class="w-full bg-gray-50 pl-11 pr-4 py-4 text-sm font-semibold text-gray-900 rounded-xl border border-gray-200 focus:bg-white focus:border-theme-blue focus:ring-4 focus:ring-theme-blue/10 outline-none transition-all"
+                      placeholder="Название вашей компании"
+                    >
+                  </div>
                 </div>
-                <div>
-                  <label class="block text-gray-700 text-xs lg:text-sm font-semibold mb-1">{{ $t('partners.formInn') }} *</label>
-                  <input 
-                    type="text" 
-                    required 
-                    v-model="form.inn"
-                    class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 focus:border-theme-blue outline-none"
-                  >
-                </div>
-              </div>
 
-              <div class="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-gray-700 text-xs lg:text-sm font-semibold mb-1">{{ $t('partners.formContact') }} *</label>
-                  <input 
-                    type="text" 
-                    required 
-                    v-model="form.contactPerson"
-                    class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 focus:border-theme-blue outline-none"
-                  >
-                </div>
-                <div>
-                  <label class="block text-gray-700 text-xs lg:text-sm font-semibold mb-1">{{ $t('partners.formPhone') }} *</label>
-                  <input 
-                    type="tel" 
-                    required 
-                    v-model="form.phone"
-                    class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 focus:border-theme-blue outline-none"
-                  >
+                <!-- INN -->
+                <div class="form-group">
+                  <label class="block text-gray-700 text-xs font-bold uppercase tracking-wider mb-2">{{ $t('partners.formInn') }} *</label>
+                  <div class="relative group/input">
+                    <i class="fas fa-id-card absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within/input:text-theme-blue transition-colors"></i>
+                    <input 
+                      type="text" 
+                      required 
+                      v-model="form.inn"
+                      class="w-full bg-gray-50 pl-11 pr-4 py-4 text-sm font-semibold text-gray-900 rounded-xl border border-gray-200 focus:bg-white focus:border-theme-blue focus:ring-4 focus:ring-theme-blue/10 outline-none transition-all"
+                      placeholder="ИНН организации"
+                    >
+                  </div>
                 </div>
               </div>
 
-              <div>
-                <label class="block text-gray-700 text-xs lg:text-sm font-semibold mb-1">Email *</label>
-                <input 
-                  type="email" 
-                  required 
-                  v-model="form.email"
-                  class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 focus:border-theme-blue outline-none"
-                >
+              <div class="grid md:grid-cols-2 gap-6">
+                <!-- Contact Person -->
+                <div class="form-group">
+                  <label class="block text-gray-700 text-xs font-bold uppercase tracking-wider mb-2">{{ $t('partners.formContact') }} *</label>
+                  <div class="relative group/input">
+                    <i class="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within/input:text-theme-blue transition-colors"></i>
+                    <input 
+                      type="text" 
+                      required 
+                      v-model="form.contactPerson"
+                      class="w-full bg-gray-50 pl-11 pr-4 py-4 text-sm font-semibold text-gray-900 rounded-xl border border-gray-200 focus:bg-white focus:border-theme-blue focus:ring-4 focus:ring-theme-blue/10 outline-none transition-all"
+                      placeholder="Ф.И.О. представителя"
+                    >
+                  </div>
+                </div>
+
+                <!-- Phone -->
+                <div class="form-group">
+                  <label class="block text-gray-700 text-xs font-bold uppercase tracking-wider mb-2">{{ $t('partners.formPhone') }} *</label>
+                  <div class="relative group/input">
+                    <i class="fas fa-phone absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within/input:text-theme-blue transition-colors"></i>
+                    <input 
+                      type="tel" 
+                      required 
+                      v-model="form.phone"
+                      class="w-full bg-gray-50 pl-11 pr-4 py-4 text-sm font-semibold text-gray-900 rounded-xl border border-gray-200 focus:bg-white focus:border-theme-blue focus:ring-4 focus:ring-theme-blue/10 outline-none transition-all"
+                      placeholder="+998 (__) ___-__-__"
+                    >
+                  </div>
+                </div>
               </div>
 
-              <div>
-                <label class="block text-gray-700 text-xs lg:text-sm font-semibold mb-1">{{ $t('partners.formCity') }} *</label>
-                <input 
-                  type="text" 
-                  required 
-                  v-model="form.city"
-                  class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 focus:border-theme-blue outline-none"
-                >
+              <div class="grid md:grid-cols-2 gap-6">
+                <!-- Email -->
+                <div class="form-group">
+                  <label class="block text-gray-700 text-xs font-bold uppercase tracking-wider mb-2">Email *</label>
+                  <div class="relative group/input">
+                    <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within/input:text-theme-blue transition-colors"></i>
+                    <input 
+                      type="email" 
+                      required 
+                      v-model="form.email"
+                      class="w-full bg-gray-50 pl-11 pr-4 py-4 text-sm font-semibold text-gray-900 rounded-xl border border-gray-200 focus:bg-white focus:border-theme-blue focus:ring-4 focus:ring-theme-blue/10 outline-none transition-all"
+                      placeholder="example@mail.com"
+                    >
+                  </div>
+                </div>
+
+                <!-- City -->
+                <div class="form-group">
+                  <label class="block text-gray-700 text-xs font-bold uppercase tracking-wider mb-2">{{ $t('partners.formCity') }} *</label>
+                  <div class="relative group/input">
+                    <i class="fas fa-map-marker-alt absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within/input:text-theme-blue transition-colors"></i>
+                    <input 
+                      type="text" 
+                      required 
+                      v-model="form.city"
+                      class="w-full bg-gray-50 pl-11 pr-4 py-4 text-sm font-semibold text-gray-900 rounded-xl border border-gray-200 focus:bg-white focus:border-theme-blue focus:ring-4 focus:ring-theme-blue/10 outline-none transition-all"
+                      placeholder="Ваш город"
+                    >
+                  </div>
+                </div>
               </div>
 
-              <div>
-                <label class="block text-gray-700 text-xs lg:text-sm font-semibold mb-1">{{ $t('partners.formCategories') }}</label>
-                <div class="grid grid-cols-2 gap-2">
+              <!-- Categories Custom Checkboxes -->
+              <div class="pt-2">
+                <label class="block text-gray-700 text-xs font-bold uppercase tracking-wider mb-4">{{ $t('partners.formCategories') }}</label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                   <label 
                     v-for="(category, idx) in categories" 
                     :key="idx" 
-                    class="flex items-center space-x-2 text-xs lg:text-sm"
+                    class="relative cursor-pointer group"
                   >
                     <input 
                       type="checkbox" 
                       :value="category"
                       v-model="form.categories"
-                      class="rounded text-theme-blue"
+                      class="peer sr-only"
                     >
-                    <span>{{ $t(category) }}</span>
+                    <div class="bg-gray-50 border border-gray-200 px-4 py-3 rounded-xl text-sm font-semibold text-gray-600 text-center transition-all peer-checked:bg-theme-blue peer-checked:text-white peer-checked:border-theme-blue peer-hover:border-theme-blue/50">
+                      {{ $t(category) }}
+                    </div>
                   </label>
                 </div>
               </div>
 
-              <div>
-                <label class="block text-gray-700 text-xs lg:text-sm font-semibold mb-1">{{ $t('partners.formMessage') }}</label>
+              <!-- Message -->
+              <div class="pt-2">
+                <label class="block text-gray-700 text-xs font-bold uppercase tracking-wider mb-2">{{ $t('partners.formMessage') }}</label>
                 <textarea 
-                  rows="3" 
+                  rows="4" 
                   v-model="form.message"
-                  class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 focus:border-theme-blue outline-none"
+                  class="w-full bg-gray-50 px-5 py-4 text-sm font-semibold text-gray-900 rounded-xl border border-gray-200 focus:bg-white focus:border-theme-blue focus:ring-4 focus:ring-theme-blue/10 outline-none transition-all resize-none"
+                  placeholder="Дополнительная информация о сотрудничестве..."
                 ></textarea>
               </div>
 
-              <div class="flex items-center space-x-2">
-                <input 
-                  type="checkbox" 
-                  required 
-                  v-model="form.agreement"
-                  class="rounded text-theme-blue"
+              <!-- Agreement & Submit -->
+              <div class="flex flex-col md:flex-row items-center justify-between gap-6 pt-6 mt-6 border-t border-gray-100">
+                <label class="flex items-center space-x-3 cursor-pointer group">
+                  <div class="relative flex items-center justify-center w-6 h-6 rounded-md border-2 border-gray-300 transition-colors group-hover:border-theme-blue" :class="{ 'bg-theme-blue border-theme-blue': form.agreement }">
+                    <i class="fas fa-check text-white text-xs transition-transform" :class="form.agreement ? 'scale-100' : 'scale-0'"></i>
+                  </div>
+                  <input 
+                    type="checkbox" 
+                    required 
+                    v-model="form.agreement"
+                    class="hidden"
+                  >
+                  <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900 transition-colors max-w-sm">
+                    {{ $t('partners.formAgreement') }}
+                  </span>
+                </label>
+
+                <button 
+                  type="submit" 
+                  class="w-full md:w-auto relative overflow-hidden bg-theme-blue text-white px-10 py-4 rounded-xl font-bold shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:-translate-y-1 transition-all duration-300 group/submit"
                 >
-                <span class="text-xs text-gray-600">
-                  {{ $t('partners.formAgreement') }}
-                </span>
+                  <div class="absolute inset-0 bg-white/20 translate-y-full group-hover/submit:translate-y-0 transition-transform duration-300 ease-out"></div>
+                  <span class="relative z-10 flex items-center justify-center gap-2">
+                    {{ $t('partners.formSubmit') }}
+                    <i class="fas fa-arrow-right group-hover/submit:translate-x-1 transition-transform"></i>
+                  </span>
+                </button>
               </div>
 
-              <button 
-                type="submit" 
-                class="w-full btn-hover bg-theme-blue text-white px-6 py-3 rounded-lg text-sm font-semibold ripple"
-              >
-                <i class="fas fa-paper-plane mr-2"></i>{{ $t('partners.formSubmit') }}
-              </button>
             </form>
           </div>
         </div>
@@ -290,3 +381,31 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.text-theme-blue {
+  color: #2563EB;
+}
+.bg-theme-blue {
+  background-color: #2563EB;
+}
+.border-theme-blue {
+  border-color: #2563EB;
+}
+
+/* Yengil hover va focus animatsiyalari uchun qulaylik */
+textarea::-webkit-scrollbar {
+  width: 8px;
+}
+textarea::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: 8px;
+}
+textarea::-webkit-scrollbar-thumb {
+  background: #c1c1c1; 
+  border-radius: 8px;
+}
+textarea::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8; 
+}
+</style>
